@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Photo Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        #image {
+            width: 600px;
+            height: 400px;
+            margin: 20px auto;
+            background-size: cover;
+            background-position: center;
+            border: 3px solid #333;
+        }
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .gallery img {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+        .gallery img:hover, .gallery img:focus {
+            border-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div id="image">Hover over or focus on an image below to display here.</div>
+    
+    <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1701381184053-9c35f3aea89f" 
+             alt="Misty Mountain Landscape" 
+             onmouseover="upDate(this)" 
+             onmouseout="undo()"
+             onfocus="upDate(this)"
+             onblur="undo()">
+        
+        <img src="https://images.unsplash.com/photo-1701532854252-d6c5a69a0efd" 
+             alt="Serene Ocean Sunset" 
+             onmouseover="upDate(this)" 
+             onmouseout="undo()"
+             onfocus="upDate(this)"
+             onblur="undo()">
+        
+        <img src="https://images.unsplash.com/photo-1701532854306-a6c1ac038b4f" 
+             alt="Autumn Forest Path" 
+             onmouseover="upDate(this)" 
+             onmouseout="undo()"
+             onfocus="upDate(this)"
+             onblur="undo()">
+        
+        <img src="https://images.unsplash.com/photo-1701413178347-5b2f24ffe4f1" 
+             alt="Urban Night Skyline" 
+             onmouseover="upDate(this)" 
+             onmouseout="undo()"
+             onfocus="upDate(this)"
+             onblur="undo()">
+        
+        <img src="https://images.unsplash.com/photo-1701642649970-75ff5f321640" 
+             alt="Desert Sand Dunes" 
+             onmouseover="upDate(this)" 
+             onmouseout="undo()"
+             onfocus="upDate(this)"
+             onblur="undo()">
+        
+        <img src="https://images.unsplash.com/photo-1701615242014-ec41dca08d33" 
+             alt="Tropical Beach Paradise" 
+             onmouseover="upDate(this)" 
+             onmouseout="undo()"
+             onfocus="upDate(this)"
+             onblur="undo()">
+    </div>
+
+    <script>
+        // Function to update the preview area when mouse hovers or focuses on an image
+        function upDate(previewPic) {
+            console.log('Image activated:', previewPic.alt);
+            const imageDiv = document.getElementById('image');
+            imageDiv.textContent = previewPic.alt;
+            imageDiv.style.backgroundImage = `url('${previewPic.src}')`;
+        }
+
+        // Function to reset the preview area when mouse leaves or blurs
+        function undo() {
+            const imageDiv = document.getElementById('image');
+            imageDiv.textContent = 'Hover over or focus on an image below to display here.';
+            imageDiv.style.backgroundImage = "url('')";
+        }
+
+        // Function to add tabindex on page load
+        function addTabIndex() {
+            console.log('Adding tabindex to images');
+            const images = document.querySelectorAll('.gallery img');
+            for (let i = 0; i < images.length; i++) {
+                images[i].setAttribute('tabindex', i + 1);
+            }
+        }
+
+        // Add tabindex when the page loads
+        window.onload = addTabIndex;
+    </script>
+</body>
+</html>
